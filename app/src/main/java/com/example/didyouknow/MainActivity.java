@@ -51,7 +51,7 @@ public class MainActivity extends Activity{
     }
 
     private void navigateToFavoritesActivity(){
-        Intent intent = new Intent(this, CameraActivity.class);
+        Intent intent = new Intent(this, FavoritesActivity.class);
         startActivity(intent);
     }
 }
