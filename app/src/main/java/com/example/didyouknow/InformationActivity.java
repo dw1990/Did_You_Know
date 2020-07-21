@@ -113,7 +113,7 @@ public class InformationActivity extends Activity {
     }
 
     public void onLike(View view){
-        Toast.makeText(this, "in on like", (int)3);
+        Toast.makeText(this, "in on like " + isFavorite, (int)3).show();
         AsyncHttpClient client = new AsyncHttpClient();
         String endpoint = "http://dhbw.phillippm.de/api/v1/favorites/entities/" + id;
 
@@ -137,7 +137,7 @@ public class InformationActivity extends Activity {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                     likeButton.setBackground(getResources().getDrawable(R.drawable.heart));
-                    InformationActivity.this.isFavorite = false;
+                    InformationActivity.this.isFavorite = true;
                 }
 
                 @Override
