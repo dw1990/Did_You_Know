@@ -51,9 +51,7 @@ public class ImageAnalysisActivity extends Activity implements OnTaskCompleted<S
         TextView txt = (TextView) findViewById(R.id.txtRandomFact);
         txt.setText(FunFacts.getRandomFact());
 
-        Intent captureImageIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(captureImageIntent, 1);
-
+        startCamera();
     }
 
 
@@ -64,8 +62,6 @@ public class ImageAnalysisActivity extends Activity implements OnTaskCompleted<S
         if (requestCode == 1 && resultCode == RESULT_OK) {
 
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-
-
             try {
                 ImageView view = (ImageView) findViewById(R.id.img_container);
                 view.setImageBitmap(bitmap);
@@ -82,9 +78,19 @@ public class ImageAnalysisActivity extends Activity implements OnTaskCompleted<S
         new StartAnalysisTask(this).execute(map);
     }
 
+    private void startCamera(){
+        Intent captureImageIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(captureImageIntent, 1);
+    }
 
     @Override
     public void OnTaskCompleted(String content) {
+
+        if(content.equals("-1")){
+
+            startCamera();
+        }
+
         Intent intent = new Intent(this, InformationActivity.class);
         intent.putExtra("object_id", content);
         startActivity(intent);

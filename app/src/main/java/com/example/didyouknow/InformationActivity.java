@@ -3,7 +3,12 @@ package com.example.didyouknow;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +19,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.InputStream;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -78,6 +85,15 @@ public class InformationActivity extends Activity {
 
                     title.setText(object.getString("title"));
 
+                    boolean fav = object.getBoolean("isFavorite");
+                    if(fav){
+                        ((Button) findViewById(R.id.btn_like)).setBackground(getResources().getDrawable(R.drawable.heart));
+                    } else {
+                        ((Button) findViewById(R.id.btn_like)).setBackground(getResources().getDrawable(R.drawable.heart_empty));
+                    }
+
+                    new DownloadImageTask(img).execute(object.getString("imageURL"));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -86,4 +102,31 @@ public class InformationActivity extends Activity {
 
         });
     }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            Log.d("asd","asd");
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+    }
+
+
 }
