@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.didyouknow.utility.FunFacts;
 import com.example.didyouknow.utility.asnyctasks.OnTaskCompleted;
@@ -86,8 +87,7 @@ public class ImageAnalysisActivity extends Activity implements OnTaskCompleted<S
     public void OnTaskCompleted(String content) {
 
         if(content.equals("null")){
-
-            startCamera();
+            Toast.makeText(this, "Das Bild konnte keinem Ergebnis zugeordnet werden", (int) 5).show();
         }
 
         Intent intent = new Intent(this, InformationActivity.class);

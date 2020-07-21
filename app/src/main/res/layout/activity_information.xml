@@ -44,7 +44,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="629dp"
             android:backgroundTint="#ECE8E8"
+            app:layout_constraintBottom_toTopOf="@+id/btn_home"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -61,32 +63,16 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Home"
-            app:layout_constraintBaseline_toBaselineOf="@+id/button5"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="5dp"
-            android:text="Entdecken"
+            android:id="@+id/button_favs"
+            android:layout_width="67dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="254dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/heart_white"
+            android:onClick="onGoFavorites"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="Favoriten"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button3" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_home" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -197,8 +183,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="64dp"
-            app:layout_constraintBottom_toBottomOf="@+id/button3"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomAppBar2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Hintergrund">
@@ -236,6 +222,20 @@
             app:layout_constraintEnd_toStartOf="@+id/btn_info"
             app:layout_constraintTop_toBottomOf="@+id/img_preview" />
 
+        <Button
+            android:id="@+id/btn_home"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/home"
+            android:onClick="onGoHome"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_favs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bottomAppBar" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -250,46 +250,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar6"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:backgroundTint="#D93434"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="5dp"
-        android:text="Home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/button_explore"
+        android:layout_width="61dp"
+        android:layout_height="39dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="5dp"
-        android:text="Entdecken"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/camera_white_menu"
+        android:onClick="onGoExplore"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginBottom="5dp"
-        android:text="Favoriten"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView4"

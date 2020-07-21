@@ -3,6 +3,7 @@ package com.example.didyouknow;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -148,5 +149,20 @@ public class InformationActivity extends Activity {
         }
     }
 
+    public void onGoFavorites(View view){
+        Intent intent = new Intent(this, FavoritesActivity.class);
+        startActivity(intent);
+    }
 
+
+    public void onGoHome(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void onGoExplore(View view){
+        Intent intent = new Intent(this, ImageAnalysisActivity.class);
+        startActivity(intent);
+    }
 }
