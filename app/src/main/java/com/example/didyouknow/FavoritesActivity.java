@@ -37,10 +37,10 @@ public class FavoritesActivity extends Activity {
                 for(int i = 0; i < response.length(); i++){
                     try {
                         JSONObject obj = response.getJSONObject(i);
-                        Favorite fav = new Favorite(obj.getString("id"),
+                        Favorite fav = new Favorite(obj.getString("imageURL"),
                                 obj.getString("name"),
                                 obj.getString("date"),
-                                obj.getString("imageURL"));
+                                obj.getString("id"));
                         favorites.add(fav);
 
                     } catch (JSONException e) {
