@@ -41,12 +41,15 @@ import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 import cz.msebera.android.httpclient.protocol.HttpContext;
 import cz.msebera.android.httpclient.protocol.HttpRequestHandler;
 import cz.msebera.android.httpclient.util.EntityUtils;
+import android.content.pm.ActivityInfo;
 
 public class ImageAnalysisActivity extends Activity implements OnTaskCompleted<String> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         setContentView(R.layout.activity_image_analysis);
 
         TextView txt = (TextView) findViewById(R.id.txtRandomFact);
@@ -72,6 +75,11 @@ public class ImageAnalysisActivity extends Activity implements OnTaskCompleted<S
                 e.printStackTrace();
             }
         }
+        else {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     private void startAnalysis(Bitmap map){
@@ -91,12 +99,14 @@ public class ImageAnalysisActivity extends Activity implements OnTaskCompleted<S
 
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+            finish();
             return;
         }
 
         Intent intent = new Intent(this, InformationActivity.class);
         intent.putExtra("object_id", content);
         startActivity(intent);
+        finish();
     }
 }
 

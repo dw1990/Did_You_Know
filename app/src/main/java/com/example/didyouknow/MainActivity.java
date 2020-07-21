@@ -2,6 +2,7 @@ package com.example.didyouknow;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import com.example.didyouknow.utility.OnSwipeTouchListener;
@@ -22,6 +23,8 @@ public class MainActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.swipe_container).setOnTouchListener(new OnSwipeTouchListener(this){

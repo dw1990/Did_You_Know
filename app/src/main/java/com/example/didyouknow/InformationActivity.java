@@ -3,7 +3,10 @@ package com.example.didyouknow;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -47,9 +50,13 @@ public class InformationActivity extends Activity {
     private String id;
     private Button likeButton;
 
+    private JSONArray infoData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_information);
 
         img = (ImageView) findViewById(R.id.img_preview);
@@ -92,6 +99,8 @@ public class InformationActivity extends Activity {
                     txt_value2.setText(array.getJSONObject(1).getString("value"));
                     txt_value3.setText(array.getJSONObject(2).getString("value"));
                     txt_value4.setText(array.getJSONObject(3).getString("value"));
+
+                    infoData = object.getJSONArray("infoData");
 
                     title.setText(object.getString("title"));
 
@@ -148,11 +157,30 @@ public class InformationActivity extends Activity {
         }
     }
 
+    public void onOpenInfos(View view) throws JSONException {
+        AlertDialog alertDialog = new AlertDialog.Builder(InformationActivity.this).create();
+        alertDialog.setTitle(title.getText() + ": Informationen");
+
+        String data = "";
+        for (int i = 0; i < infoData.length(); i++) {
+            data = data + "- " + infoData.getJSONObject(i).getString("value") + "\n\r";
+        }
+
+        alertDialog.setMessage("Möglichkeiten vor Ort: \n\r" + data);
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Alles klar.",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+    }
+
     public void onGoFavorites(View view) {
         Intent intent = new Intent(this, FavoritesActivity.class);
         startActivity(intent);
     }
-
 
     public void onGoHome(View view) {
         Intent intent = new Intent(this, MainActivity.class);
