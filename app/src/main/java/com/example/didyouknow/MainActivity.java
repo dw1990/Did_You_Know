@@ -46,7 +46,7 @@ public class MainActivity extends Activity{
     }
 
     private void navigateToCameraActivity(){
-        Intent intent = new Intent(this, CameraActivity.class);
+        Intent intent = new Intent(this, ImageAnalysisActivity.class);
         startActivity(intent);
     }
 
