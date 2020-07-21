@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.didyouknow.adapters.Favorite;
 import com.example.didyouknow.adapters.FavoriteAdapter;
@@ -57,5 +59,22 @@ public class FavoritesActivity extends Activity {
 
             }
         });
+    }
+
+    public void onGoFavorites(View view) {
+        Intent intent = new Intent(this, FavoritesActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void onGoHome(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void onGoExplore(View view) {
+        Intent intent = new Intent(this, ImageAnalysisActivity.class);
+        startActivity(intent);
     }
 }

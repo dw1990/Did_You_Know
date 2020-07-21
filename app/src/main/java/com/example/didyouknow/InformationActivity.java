@@ -68,13 +68,13 @@ public class InformationActivity extends Activity {
         txt_background = (TextView) findViewById(R.id.txt_background);
 
         likeButton = findViewById(R.id.btn_like);
-        
+
         id = getIntent().getStringExtra("object_id");
 
         fetchData(id);
     }
 
-    private void fetchData(String id){
+    private void fetchData(String id) {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(ENTITY_ENDPOINT + id, new JsonHttpResponseHandler() {
             @Override
@@ -96,7 +96,7 @@ public class InformationActivity extends Activity {
                     title.setText(object.getString("title"));
 
                     boolean fav = object.getBoolean("isFavorite");
-                    if(fav){
+                    if (fav) {
                         likeButton.setBackground(getResources().getDrawable(R.drawable.heart));
                     } else {
                         likeButton.setBackground(getResources().getDrawable(R.drawable.heart_not));
@@ -113,18 +113,17 @@ public class InformationActivity extends Activity {
         });
     }
 
-    public void onLike(View view){
-        Toast.makeText(this, "in on like " + isFavorite, (int)3).show();
+    public void onLike(View view) {
         AsyncHttpClient client = new AsyncHttpClient();
         String endpoint = "http://dhbw.phillippm.de/api/v1/favorites/entities/" + id;
 
-        if(this.isFavorite){
+        if (this.isFavorite) {
             client.delete(endpoint, new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                     likeButton.setBackground(getResources().getDrawable(R.drawable.heart_not));
                     InformationActivity.this.isFavorite = false;
-
+                    Toast.makeText(InformationActivity.this, "Aus den Favoriten entfernt.", (int) 3).show();
                 }
 
                 @Override
@@ -132,13 +131,13 @@ public class InformationActivity extends Activity {
                     //TODO
                 }
             });
-        }
-        else{
+        } else {
             client.post(endpoint, new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                     likeButton.setBackground(getResources().getDrawable(R.drawable.heart));
                     InformationActivity.this.isFavorite = true;
+                    Toast.makeText(InformationActivity.this, "Zu den Favoriten hinzugefügt.", (int) 3).show();
                 }
 
                 @Override
@@ -149,19 +148,19 @@ public class InformationActivity extends Activity {
         }
     }
 
-    public void onGoFavorites(View view){
+    public void onGoFavorites(View view) {
         Intent intent = new Intent(this, FavoritesActivity.class);
         startActivity(intent);
     }
 
 
-    public void onGoHome(View view){
+    public void onGoHome(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
 
-    public void onGoExplore(View view){
+    public void onGoExplore(View view) {
         Intent intent = new Intent(this, ImageAnalysisActivity.class);
         startActivity(intent);
     }

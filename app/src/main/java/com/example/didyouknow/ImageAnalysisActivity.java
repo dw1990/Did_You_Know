@@ -87,7 +87,11 @@ public class ImageAnalysisActivity extends Activity implements OnTaskCompleted<S
     public void OnTaskCompleted(String content) {
 
         if(content.equals("null")){
-            Toast.makeText(this, "Das Bild konnte keinem Ergebnis zugeordnet werden", (int) 5).show();
+            Toast.makeText(this, "Das Bild konnte keiner Sehenswürdigkeit zugeordnet werden. Bitte versuche es erneut!", (int) 3500).show();
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            return;
         }
 
         Intent intent = new Intent(this, InformationActivity.class);

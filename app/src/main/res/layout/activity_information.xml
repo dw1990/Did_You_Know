@@ -64,14 +64,13 @@
 
         <Button
             android:id="@+id/button_favs"
-            android:layout_width="67dp"
-            android:layout_height="34dp"
-            android:layout_marginEnd="254dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="56dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="6dp"
             android:background="@drawable/heart_white"
             android:onClick="onGoFavorites"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_home" />
 
         <ImageView
@@ -224,17 +223,16 @@
 
         <Button
             android:id="@+id/btn_home"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="22dp"
+            android:layout_width="46dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="23dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/home"
             android:onClick="onGoHome"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_favs"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bottomAppBar" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -253,9 +251,9 @@
     <Button
         android:id="@+id/button_explore"
         android:layout_width="61dp"
-        android:layout_height="39dp"
+        android:layout_height="42dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="6dp"
         android:background="@drawable/camera_white_menu"
         android:onClick="onGoExplore"
         app:layout_constraintBottom_toBottomOf="parent"
