@@ -48,7 +48,7 @@ public class FavoritesActivity extends Activity {
                     }
                 }
 
-                FavoriteAdapter favoriteAdapter = new FavoriteAdapter(favorites);
+                FavoriteAdapter favoriteAdapter = new FavoriteAdapter(favorites, FavoritesActivity.this);
 
                 RecyclerView recyclerView = findViewById(R.id.rec_view);
                 recyclerView.setLayoutManager(new LinearLayoutManager(FavoritesActivity.this));
