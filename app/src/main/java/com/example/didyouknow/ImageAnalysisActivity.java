@@ -54,12 +54,6 @@ public class ImageAnalysisActivity extends Activity implements OnTaskCompleted<S
         startCamera();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        startCamera();
-    }
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);

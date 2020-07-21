@@ -218,20 +218,21 @@
 
         <Button
             android:id="@+id/btn_info"
-            android:layout_width="38dp"
-            android:layout_height="34dp"
+            android:layout_width="40dp"
+            android:layout_height="39dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/info_icon"
+            android:background="@drawable/info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_preview" />
 
         <Button
             android:id="@+id/btn_like"
-            android:layout_width="32dp"
-            android:layout_height="34dp"
+            android:layout_width="37dp"
+            android:layout_height="39dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:onClick="onLike"
             app:layout_constraintEnd_toStartOf="@+id/btn_info"
             app:layout_constraintTop_toBottomOf="@+id/img_preview" />
 

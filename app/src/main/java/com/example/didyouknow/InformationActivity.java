@@ -8,9 +8,11 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.didyouknow.utility.DownloadImageTask;
 import com.loopj.android.http.AsyncHttpClient;
@@ -40,6 +42,10 @@ public class InformationActivity extends Activity {
     private ImageView img;
     private TextView txt_background;
 
+    private boolean isFavorite = false;
+    private String id;
+    private Button likeButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +66,9 @@ public class InformationActivity extends Activity {
 
         txt_background = (TextView) findViewById(R.id.txt_background);
 
-        String id = getIntent().getStringExtra("object_id");
+        likeButton = findViewById(R.id.btn_like);
+        
+        id = getIntent().getStringExtra("object_id");
 
         fetchData(id);
     }
@@ -88,10 +96,12 @@ public class InformationActivity extends Activity {
 
                     boolean fav = object.getBoolean("isFavorite");
                     if(fav){
-                        ((Button) findViewById(R.id.btn_like)).setBackground(getResources().getDrawable(R.drawable.heart));
+                        likeButton.setBackground(getResources().getDrawable(R.drawable.heart));
                     } else {
-                        ((Button) findViewById(R.id.btn_like)).setBackground(getResources().getDrawable(R.drawable.heart_empty));
+                        likeButton.setBackground(getResources().getDrawable(R.drawable.heart_not));
                     }
+
+                    InformationActivity.this.isFavorite = fav;
 
                     new DownloadImageTask(img).execute(object.getString("imageURL"));
 
@@ -99,8 +109,44 @@ public class InformationActivity extends Activity {
                     e.printStackTrace();
                 }
             }
-
-
         });
     }
+
+    public void onLike(View view){
+        Toast.makeText(this, "in on like", (int)3);
+        AsyncHttpClient client = new AsyncHttpClient();
+        String endpoint = "http://dhbw.phillippm.de/api/v1/favorites/entities/" + id;
+
+        if(this.isFavorite){
+            client.delete(endpoint, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                    likeButton.setBackground(getResources().getDrawable(R.drawable.heart_not));
+                    InformationActivity.this.isFavorite = false;
+
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                    //TODO
+                }
+            });
+        }
+        else{
+            client.post(endpoint, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                    likeButton.setBackground(getResources().getDrawable(R.drawable.heart));
+                    InformationActivity.this.isFavorite = false;
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                    //TODO
+                }
+            });
+        }
+    }
+
+
 }
