@@ -30,12 +30,12 @@ public class MainActivity extends Activity{
         findViewById(R.id.swipe_container).setOnTouchListener(new OnSwipeTouchListener(this){
             @Override
             public void onSwipeRight() {
-                navigateToCameraActivity();
+                navigateToFavoritesActivity();
             }
 
             @Override
             public void onSwipeLeft() {
-                navigateToFavoritesActivity();
+                navigateToCameraActivity();
             }
         });
 
